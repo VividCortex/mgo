@@ -34,9 +34,9 @@ import (
 	"sync"
 	"time"
 
-	. "gopkg.in/check.v1"
-	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
+	. "github.com/VividCortex/check"
+	"github.com/VividCortex/mgo"
+	"github.com/VividCortex/mgo/bson"
 )
 
 func (s *S) TestNewSession(c *C) {

@@ -27,8 +27,8 @@
 package mgo_test
 
 import (
-	. "gopkg.in/check.v1"
-	"gopkg.in/mgo.v2"
+	. "github.com/VividCortex/check"
+	"github.com/VividCortex/mgo"
 )
 
 func (s *S) TestBulkInsert(c *C) {

@@ -38,8 +38,8 @@ import (
 	"sync"
 	"time"
 
-	. "gopkg.in/check.v1"
-	"gopkg.in/mgo.v2"
+	. "github.com/VividCortex/check"
+	"github.com/VividCortex/mgo"
 )
 
 func (s *S) TestAuthLoginDatabase(c *C) {

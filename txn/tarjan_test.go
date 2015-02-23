@@ -2,8 +2,8 @@ package txn
 
 import (
 	"fmt"
-	"gopkg.in/mgo.v2/bson"
-	. "gopkg.in/check.v1"
+	. "github.com/VividCortex/check"
+	"github.com/VividCortex/mgo/bson"
 )
 
 type TarjanSuite struct{}
