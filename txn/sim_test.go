@@ -2,11 +2,11 @@ package txn_test
 
 import (
 	"flag"
+	. "github.com/VividCortex/check"
 	"github.com/VividCortex/mgo"
 	"github.com/VividCortex/mgo/bson"
 	"github.com/VividCortex/mgo/dbtest"
 	"github.com/VividCortex/mgo/txn"
-	. "gopkg.in/check.v1"
 	"math/rand"
 	"time"
 )

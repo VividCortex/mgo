@@ -35,7 +35,7 @@ import (
 
 	"github.com/VividCortex/mgo/bson"
 
-	. "gopkg.in/check.v1"
+	. "github.com/VividCortex/check"
 )
 
 // --------------------------------------------------------------------------

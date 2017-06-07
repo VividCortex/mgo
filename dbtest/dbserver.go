@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/VividCortex/mgo"
-	"gopkg.in/tomb.v2"
+	"github.com/VividCortex/tomb"
 )
 
 // DBServer controls a MongoDB server process to be used within test suites.

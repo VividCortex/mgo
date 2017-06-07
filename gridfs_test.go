@@ -31,9 +31,9 @@ import (
 	"os"
 	"time"
 
+	. "github.com/VividCortex/check"
 	"github.com/VividCortex/mgo"
 	"github.com/VividCortex/mgo/bson"
-	. "gopkg.in/check.v1"
 )
 
 func (s *S) TestGridFSCreate(c *C) {

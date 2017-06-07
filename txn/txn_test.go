@@ -7,11 +7,11 @@ import (
 	"testing"
 	"time"
 
+	. "github.com/VividCortex/check"
 	"github.com/VividCortex/mgo"
 	"github.com/VividCortex/mgo/bson"
 	"github.com/VividCortex/mgo/dbtest"
 	"github.com/VividCortex/mgo/txn"
-	. "gopkg.in/check.v1"
 )
 
 func TestAll(t *testing.T) {

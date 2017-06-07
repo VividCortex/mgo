@@ -38,9 +38,9 @@ import (
 	"testing"
 	"time"
 
+	. "github.com/VividCortex/check"
 	"github.com/VividCortex/mgo"
 	"github.com/VividCortex/mgo/bson"
-	. "gopkg.in/check.v1"
 )
 
 var fast = flag.Bool("fast", false, "Skip slow tests")

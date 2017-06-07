@@ -3,7 +3,7 @@ package bson_test
 import (
 	"github.com/VividCortex/mgo/bson"
 
-	. "gopkg.in/check.v1"
+	. "github.com/VividCortex/check"
 	"reflect"
 	"strings"
 	"time"

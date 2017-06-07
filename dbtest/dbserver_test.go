@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	. "gopkg.in/check.v1"
+	. "github.com/VividCortex/check"
 
 	"github.com/VividCortex/mgo"
 	"github.com/VividCortex/mgo/dbtest"

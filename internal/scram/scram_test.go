@@ -4,8 +4,8 @@ import (
 	"crypto/sha1"
 	"testing"
 
+	. "github.com/VividCortex/check"
 	"github.com/VividCortex/mgo/internal/scram"
-	. "gopkg.in/check.v1"
 	"strings"
 )
 
