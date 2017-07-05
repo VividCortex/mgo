@@ -230,6 +230,17 @@ func (d *decoder) readDocTo(out reflect.Value) {
 	if end <= d.i || end > len(d.in) || d.in[end-1] != '\x00' {
 		corrupted()
 	}
+
+	// Skip validation when decoding into a raw type;
+	// this let's us lazily decode elements and completely
+	// discard parts of the document we don't care about.
+	if outt == typeRaw {
+		d.docType = docType
+		d.i = end
+		out.Set(reflect.ValueOf(Raw{0x03, d.in[start:d.i]}))
+		return
+	}
+
 	for d.in[d.i] != '\x00' {
 		kind := d.readByte()
 		name := d.readCStr()
