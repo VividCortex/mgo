@@ -563,9 +563,9 @@ func Unmarshal(in []byte, out interface{}) (err error) {
 	case reflect.Map:
 		d := newDecoder(in)
 		d.readDocTo(v)
-		if d.i < len(d.in) {
-			return errors.New("Document is corrupted")
-		}
+		//if d.i < len(d.in) {
+		//	return errors.New("Document is corrupted")
+		//}
 	case reflect.Struct:
 		return errors.New("Unmarshal can't deal with struct values. Use a pointer.")
 	default:
