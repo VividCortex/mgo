@@ -1658,34 +1658,38 @@ func (idxs indexSlice) Swap(i, j int)      { idxs[i], idxs[j] = idxs[j], idxs[i]
 
 func simpleIndexKey(realKey bson.D) (key []string) {
 	for i := range realKey {
-		var vi int
+		vi := 1
 		field := realKey[i].Name
 
-		switch realKey[i].Value.(type) {
+		switch v := realKey[i].Value.(type) {
 		case int64:
-			vf, _ := realKey[i].Value.(int64)
-			vi = int(vf)
-		case float64:
-			vf, _ := realKey[i].Value.(float64)
-			vi = int(vf)
-		case string:
-			if vs, ok := realKey[i].Value.(string); ok {
-				key = append(key, "$"+vs+":"+field)
-				continue
+			if v < 0 {
+				vi = -1
 			}
+		case float64:
+			if v < 0 {
+				vi = -1
+			}
+		case string:
+			key = append(key, "$"+v+":"+field)
+			continue
 		case int:
-			vi = realKey[i].Value.(int)
+			if v < 0 {
+				vi = -1
+			}
+		case bool:
+			if !v {
+				vi = -1
+			}
+		default:
+			panic(fmt.Sprintf("Got unknown index key type for field %s: %T", field, realKey[i].Value))
 		}
 
 		if vi == 1 {
 			key = append(key, field)
-			continue
-		}
-		if vi == -1 {
+		} else {
 			key = append(key, "-"+field)
-			continue
 		}
-		panic(fmt.Sprintf("Got unknown index key type for field %s: %T", field, realKey[i].Value))
 	}
 	return
 }
