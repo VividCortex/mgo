@@ -3281,7 +3281,11 @@ func (q *Query) One(result interface{}) (err error) {
 // It returns whether to expect a find command result or not. Note op may be
 // translated into an explain command, in which case the function returns false.
 func prepareFindOp(socket *mongoSocket, op *queryOp, limit int32) bool {
-	if socket.ServerInfo().MaxWireVersion < 4 || op.collection == "admin.$cmd" {
+	if op.collection == "admin.$cmd" {
+		return false
+	}
+	if wireVer := socket.ServerInfo().MaxWireVersion; wireVer < 3 ||
+		(wireVer == 3 && !op.options.Explain) {
 		return false
 	}
 
@@ -3322,7 +3326,7 @@ func prepareFindOp(socket *mongoSocket, op *queryOp, limit int32) bool {
 	op.hasOptions = false
 
 	if explain {
-		op.query = bson.D{{"explain", op.query}}
+		op.query = bson.D{{"explain", op.query}, {"verbosity", "queryPlanner"}}
 		return false
 	}
 	return true
