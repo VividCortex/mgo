@@ -1685,7 +1685,7 @@ func simpleIndexKey(realKey bson.D) (key []string) {
 			key = append(key, "-"+field)
 			continue
 		}
-		panic("Got unknown index key type for field " + field)
+		panic(fmt.Sprintf("Got unknown index key type for field %s: %T", field, realKey[i].Value))
 	}
 	return
 }
