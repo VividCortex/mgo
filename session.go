@@ -3326,7 +3326,7 @@ func prepareFindOp(socket *mongoSocket, op *queryOp, limit int32) bool {
 	op.hasOptions = false
 
 	if explain {
-		op.query = bson.D{{"explain", op.query}}
+		op.query = bson.D{{"explain", op.query}, {"verbosity", "queryPlanner"}}
 		return false
 	}
 	return true
