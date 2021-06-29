@@ -3500,7 +3500,7 @@ func (s *Session) FindRef(ref *DBRef) *Query {
 }
 
 // CollectionNames returns the collection names present in the db database.
-func (db *Database) CollectionNames() (names []string, err error) {
+func (db *Database) CollectionNames(extraArgs ...bson.DocElem) (names []string, err error) {
 	// Clone session and set it to Monotonic mode so that the server
 	// used for the query may be safely obtained afterwards, if
 	// necessary for iteration when a cursor is received.
@@ -3514,7 +3514,7 @@ func (db *Database) CollectionNames() (names []string, err error) {
 		Collections []bson.Raw
 		Cursor      cursorData
 	}
-	err = db.With(cloned).Run(bson.D{{"listCollections", 1}, {"cursor", bson.D{{"batchSize", batchSize}}}}, &result)
+	err = db.With(cloned).Run(append(bson.D{{"listCollections", 1}, {"cursor", bson.D{{"batchSize", batchSize}}}}, extraArgs...), &result)
 	if err == nil {
 		firstBatch := result.Collections
 		if firstBatch == nil {
